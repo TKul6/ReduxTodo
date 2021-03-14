@@ -20,8 +20,11 @@ constructor(private store: Store<AppState>) {
   this.tasks$ = store.select(selectTasks);
 }
 
-public addTodo(): void {
-  this.store.dispatch(createTask(new Task('test')));
+public addTodo(text: string): void {
+
+
+
+  this.store.dispatch(createTask(new Task(text)));
 }
 
 }

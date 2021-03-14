@@ -1,3 +1,26 @@
-<h1>Tasks ({{(tasks$ | async)?.length }})</h1>
+<main class="app">
 
-<button (click)="addTodo()">Add</button>
+    <mat-toolbar color="primary">
+        <span>Task List ({{(tasks$ | async)?.length }})</span>
+    </mat-toolbar>
+
+
+    <div class="wrapper">
+        <div class="content">
+
+            <div class="content-item create-new-task">
+                <mat-form-field style="flex:1">
+                    <mat-label>Write Your Task</mat-label>
+                    <input matInput placeholder="What do you want to do?" #inputText>
+                </mat-form-field>
+
+                <button (click)="addTodo(inputText.value)" mat-button color="primary"
+                    [disabled]="inputText.value.length === 0">ADD</button>
+            </div>
+            <ng-container *ngFor="let task of tasks$|async">
+                <app-task [task]="task"></app-task>
+            </ng-container>
+        </div>
+    </div>
+
+</main>
