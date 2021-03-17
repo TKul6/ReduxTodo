@@ -21,7 +21,7 @@ export const reducer = createReducer(initialState,
         return { ...state, tasks: [...state.tasks, taskToAdd], tasksIdProvider: state.tasksIdProvider + 1 };
     }),
     on(removeTask, (state: State, { taskId }) => {
-        const filteredTasks = state.tasks.filter((task: Task) => task.Id() !== taskId);
+        const filteredTasks = state.tasks.filter((task: Task) => task.Id !== taskId);
         if (filteredTasks.length === state.tasks.length) {
             console.error(`Could not find task with id ${taskId} in the state.`);
             return state;
@@ -33,7 +33,7 @@ export const reducer = createReducer(initialState,
         let taskFound = false;
 
         const updatedTasksList = state.tasks.map((task: Task) => {
-            if (task.Id() === taskId) {
+            if (task.Id === taskId) {
                 return task.getCompletedTask();
                 taskFound = true;
             }

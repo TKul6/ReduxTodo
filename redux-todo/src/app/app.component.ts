@@ -22,8 +22,6 @@ constructor(private store: Store<AppState>) {
 
 public addTodo(text: string): void {
 
-
-
   this.store.dispatch(createTask(new Task(text)));
 }
 

@@ -5,11 +5,11 @@ export class Task {
 
     private _completed = false;
 
-    public Id(): number | undefined{
+    get Id(): number{
         return this._id
     }
 
-public completed(): boolean {
+get completed(): boolean {
     return this._completed;
 }
 

@@ -18,7 +18,8 @@
                     [disabled]="inputText.value.length === 0">ADD</button>
             </div>
             <ng-container *ngFor="let task of tasks$|async">
-                <app-task [task]="task"></app-task>
+                <app-task [task]="task" class="content-item"
+                (click)="removeTask()"></app-task>
             </ng-container>
         </div>
     </div>

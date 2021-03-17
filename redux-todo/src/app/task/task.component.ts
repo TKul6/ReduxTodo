@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { removeTask } from '../state/tasks-actions';
+import { State } from '../state/tasks-reducer';
 import { Task } from '../task';
 
 @Component({
@@ -10,11 +13,16 @@ export class TaskComponent implements OnInit {
 
 
   @Input()
-  task: Task | undefined;
+  task: Task;
 
-  constructor() { }
+  constructor(private store: Store<State>) { }
 
   ngOnInit(): void {
+  }
+
+  public removeTask() {
+
+    this.store.dispatch(removeTask({taskId: this.task.Id}));
   }
 
 }

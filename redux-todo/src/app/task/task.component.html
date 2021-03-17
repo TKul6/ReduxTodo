@@ -1,3 +1,8 @@
-<div>
-    {{task?.text}}
-</div>
+<mat-card *ngIf="task">
+    <mat-checkbox [checked]="task.completed" color="primary">Checked
+        {{task?.text}}
+    </mat-checkbox>
+    <div class="commands-section">
+        <button mat-button color="warn" (click)="removeTask()">REMOVE</button>
+    </div>
+</mat-card>
