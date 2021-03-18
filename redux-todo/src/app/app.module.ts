@@ -15,11 +15,14 @@ import {MatButtonModule} from '@angular/material/button';
 import { TaskComponent } from './task/task.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ProjectTasksPipe } from './count-tasks.pipe';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TaskComponent
+    TaskComponent,
+    ProjectTasksPipe
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatFormFieldModule,
     MatButtonModule,
     MatCardModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

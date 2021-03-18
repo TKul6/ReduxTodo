@@ -5,7 +5,10 @@
         margin-top: 10px;
         align-items: center;
         justify-content: space-between;
+    }
 
-        
+    .completed-task-section {
+        display: flex;
+        justify-content: center;
     }
 }

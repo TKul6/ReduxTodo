@@ -34,8 +34,8 @@ export const reducer = createReducer(initialState,
 
         const updatedTasksList = state.tasks.map((task: Task) => {
             if (task.Id === taskId) {
-                return task.getCompletedTask();
                 taskFound = true;
+                return task.getCompletedTask();
             }
             return task;
         });

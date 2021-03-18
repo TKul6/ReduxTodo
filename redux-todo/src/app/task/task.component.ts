@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { removeTask } from '../state/tasks-actions';
+import { completeTask, removeTask } from '../state/tasks-actions';
 import { State } from '../state/tasks-reducer';
 import { Task } from '../task';
 
@@ -23,6 +23,10 @@ export class TaskComponent implements OnInit {
   public removeTask() {
 
     this.store.dispatch(removeTask({taskId: this.task.Id}));
+  }
+
+  public completeTask() {
+    this.store.dispatch(completeTask({taskId: this.task.Id}));
   }
 
 }
