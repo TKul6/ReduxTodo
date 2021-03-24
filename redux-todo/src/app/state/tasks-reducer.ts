@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { Task } from "../task";
-import { completeTask, createTask, removeTask } from "./tasks-actions";
+import * as tasksActions from "./tasks-actions";
 
 
 
@@ -15,12 +15,12 @@ export const initialState: State = {
 };
 
 export const reducer = createReducer(initialState,
-    on(createTask, (state: State, task: Task) => {
+    on(tasksActions.createTaskSuccess, (state: State, task: Task) => {
         const taskToAdd = new Task(task.text, task.important, state.tasksIdProvider);
 
         return { ...state, tasks: [...state.tasks, taskToAdd], tasksIdProvider: state.tasksIdProvider + 1 };
     }),
-    on(removeTask, (state: State, { taskId }) => {
+    on(tasksActions.removeTaskSuccess, (state: State, { taskId }) => {
         const filteredTasks = state.tasks.filter((task: Task) => task.Id !== taskId);
         if (filteredTasks.length === state.tasks.length) {
             console.error(`Could not find task with id ${taskId} in the state.`);
@@ -28,7 +28,7 @@ export const reducer = createReducer(initialState,
         }
         return { ...state, tasks: filteredTasks };
     }),
-    on(completeTask, (state: State, { taskId }) => {
+    on(tasksActions.completeTaskSuccess, (state: State, { taskId }) => {
 
         let taskFound = false;
 

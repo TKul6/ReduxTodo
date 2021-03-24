@@ -17,6 +17,10 @@ import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ProjectTasksPipe } from './count-tasks.pipe';
 import {MatIconModule} from '@angular/material/icon';
+import { EffectsModule } from '@ngrx/effects';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TaskEffects } from './state/tasks-effects';
+import { MockBackendInterceptor } from './interceptors/mock-backend.interceptor';
 
 @NgModule({
   declarations: [
@@ -36,9 +40,11 @@ import {MatIconModule} from '@angular/material/icon';
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
-    MatIconModule
+    MatIconModule,
+    EffectsModule.forRoot([TaskEffects]),
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: MockBackendInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
