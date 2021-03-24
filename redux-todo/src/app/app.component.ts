@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from './state/reducer';
 import { createTask } from './state/tasks-actions';
-import { selectTasks  } from './state/tasks-selectors';
+import { pendingOperation, selectTasks  } from './state/tasks-selectors';
 import { Task } from './task';
 
 @Component({
@@ -15,9 +15,11 @@ export class AppComponent {
   
 
 tasks$: Observable<ReadonlyArray<Task>>;
+pendingOperation$: Observable<boolean>;
 
 constructor(private store: Store<AppState>) {
   this.tasks$ = store.select(selectTasks);
+  this.pendingOperation$ = store.select(pendingOperation);
 }
 
 public addTodo(text: string): void {

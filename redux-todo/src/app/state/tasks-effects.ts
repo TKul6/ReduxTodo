@@ -22,15 +22,15 @@ export class TaskEffects {
                 .pipe(map((_) => tasksActions.removeTaskSuccess({ taskId: action.taskId }),
                     catchError((err: any) => of(tasksActions.removeTaskFailure({ taskId: action.taskId }))))))));
 
-                    updateTask$ = createEffect(() => this.actions
+    updateTask$ = createEffect(() => this.actions
         .pipe(ofType(tasksActions.completeTask),
-            exhaustMap((action) => this.taskService.updateTask(action)
-                .pipe(map((_) => tasksActions.completeTaskSuccess({ taskId: action.Id }),
-                    catchError((err: any) => of(tasksActions.completeTaskFailure({ taskId: action.Id}))))))));
+            exhaustMap((action) => this.taskService.updateTask(action.Task)
+                .pipe(map((_) => tasksActions.completeTaskSuccess({ taskId: action.Task.Id }),
+                    catchError((err: any) => of(tasksActions.completeTaskFailure({ taskId: action.Task.Id}))))))));
 
 
 
 
     constructor(private actions: Actions,
-        private taskService: TasksService) { }
+                private taskService: TasksService) { }
 }

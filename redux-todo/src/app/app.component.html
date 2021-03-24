@@ -3,6 +3,8 @@
     <mat-toolbar color="primary">
         <span>Task List ({{(tasks$ | async)?.length }})</span>
     </mat-toolbar>
+    <mat-progress-bar color="accent" mode="indeterminate" class="content-item"
+    *ngIf="pendingOperation$ | async"></mat-progress-bar>
 
 
     <div class="wrapper">
@@ -13,10 +15,10 @@
                     <mat-label>Write Your Task</mat-label>
                     <input matInput placeholder="What do you want to do?" #inputText>
                 </mat-form-field>
-
                 <button (click)="addTodo(inputText.value); inputText.value = ''" mat-button color="primary"
                     [disabled]="inputText.value.length === 0">ADD</button>
             </div>
+           
                 <ng-container *ngFor="let task of tasks$|async | projectTasks: false">
                     <app-task [task]="task" class="content-item"></app-task>
                 </ng-container>

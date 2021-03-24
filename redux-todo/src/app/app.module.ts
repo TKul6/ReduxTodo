@@ -21,6 +21,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TaskEffects } from './state/tasks-effects';
 import { MockBackendInterceptor } from './interceptors/mock-backend.interceptor';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { ToastrModule } from 'ngx-toastr';
+import { MessagesEffects } from './state/messages-effects';
+
 
 @NgModule({
   declarations: [
@@ -41,8 +45,10 @@ import { MockBackendInterceptor } from './interceptors/mock-backend.interceptor'
     MatCardModule,
     MatCheckboxModule,
     MatIconModule,
-    EffectsModule.forRoot([TaskEffects]),
+    EffectsModule.forRoot([TaskEffects, MessagesEffects]),
     HttpClientModule,
+    MatProgressBarModule,
+    ToastrModule.forRoot({positionClass: 'toast-bottom-left'})
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: MockBackendInterceptor, multi: true}],
   bootstrap: [AppComponent]
