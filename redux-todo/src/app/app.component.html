@@ -13,9 +13,9 @@
             <div class="content-item create-new-task">
                 <mat-form-field style="flex:1">
                     <mat-label>Write Your Task</mat-label>
-                    <input matInput placeholder="What do you want to do?" #inputText>
+                    <input matInput placeholder="What do you want to do?" #inputText [value]="text">
                 </mat-form-field>
-                <button (click)="addTodo(inputText.value); inputText.value = ''" mat-button color="primary"
+                <button (click)="addTodo(inputText.value);" mat-button color="primary"
                     [disabled]="inputText.value.length === 0">ADD</button>
             </div>
            

@@ -1,7 +1,6 @@
-import { state } from "@angular/animations";
-import { createReducer, on } from "@ngrx/store";
-import { Task } from "../task";
-import * as tasksActions from "./tasks-actions";
+import { createReducer, on } from '@ngrx/store';
+import { Task } from '../task';
+import * as tasksActions from './tasks-actions';
 
 
 
@@ -22,8 +21,8 @@ export const initialState: State = {
 };
 
 export const reducer = createReducer(initialState,
-    on(tasksActions.createTask, (currentState: State, task: Task) =>({...currentState, creatingTask: true})),
-    on(tasksActions.createTaskSuccess, (currentState: State, task: Task) => {
+    on(tasksActions.createTask, (currentState: State) => ({...currentState, creatingTask: true})),
+    on(tasksActions.createTaskSuccess, (currentState: State, {task}) => {
         const taskToAdd = new Task(task.text, task.important, currentState.tasksIdProvider);
 
         return { ...currentState, tasks: [...currentState.tasks, taskToAdd], tasksIdProvider: currentState.tasksIdProvider + 1,

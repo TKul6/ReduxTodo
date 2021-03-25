@@ -26,7 +26,7 @@ export class TaskComponent implements OnInit {
   }
 
   public completeTask() {
-    this.store.dispatch(completeTask({Task: this.task}));
+    this.store.dispatch(completeTask({task: this.task}));
   }
 
 }

@@ -18,7 +18,7 @@ export class MessagesEffects {
     notifyTaskCreationFailed$ = createEffect(() => this.actions
         .pipe(ofType(tasksActions.createTaskFailure),
             switchMap(() => {
-                this.messagesService.success('Task could not be created.');
+                this.messagesService.error('Task could not be created.');
                 return of(null);
             })), { dispatch: false });
 
@@ -32,7 +32,7 @@ export class MessagesEffects {
     notifyFailedToRemoveTask$ = createEffect(() => this.actions
         .pipe(ofType(tasksActions.removeTaskFailure),
             switchMap(() => {
-                this.messagesService.success('Task could not be removed.');
+                this.messagesService.error('Task could not be removed.');
                 return of(null);
             })), { dispatch: false });
 
@@ -46,7 +46,7 @@ export class MessagesEffects {
     notifyFailedToCompleteTask$ = createEffect(() => this.actions
         .pipe(ofType(tasksActions.completeTaskFailure),
             switchMap(() => {
-                this.messagesService.success('Task could not be completed.');
+                this.messagesService.error('Task could not be completed.');
                 return of(null);
             })), { dispatch: false });
 
