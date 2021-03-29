@@ -6,7 +6,6 @@ import * as tasksActions from './tasks-actions';
 
 export interface State {
     tasks: ReadonlyArray<Task>;
-    tasksIdProvider: number;
     creatingTask: boolean;
     updatingTask: boolean;
     removingTask: boolean;
@@ -14,7 +13,6 @@ export interface State {
 
 export const initialState: State = {
     tasks: [],
-    tasksIdProvider: 1,
     creatingTask: false,
     updatingTask: false,
     removingTask: false
@@ -23,9 +21,9 @@ export const initialState: State = {
 export const reducer = createReducer(initialState,
     on(tasksActions.createTask, (currentState: State) => ({...currentState, creatingTask: true})),
     on(tasksActions.createTaskSuccess, (currentState: State, {task}) => {
-        const taskToAdd = new Task(task.text, task.important, currentState.tasksIdProvider);
+        const taskToAdd = new Task(task.text, task.important);
 
-        return { ...currentState, tasks: [...currentState.tasks, taskToAdd], tasksIdProvider: currentState.tasksIdProvider + 1,
+        return { ...currentState, tasks: [...currentState.tasks, taskToAdd],
         creatingTask: false };
     }),
     on(tasksActions.createTaskFailure, (currentState: State) => ({...currentState, creatingTask: false})),

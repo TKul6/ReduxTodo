@@ -38,7 +38,6 @@ export class AppComponent implements OnInit, OnDestroy {
       .pipe(filter(([previousState, currentState]) =>
       previousState.creatingTask && !currentState.creatingTask && previousState.tasksCount < currentState.tasksCount))
       .subscribe(_ => {
-        console.log('ins');
         this.text = '';
         this.cdr.markForCheck();
       });
